@@ -1,0 +1,20 @@
+// Composite class representing a directory
+class CompositeDirectory : public FileSystemComponent {
+private:
+    std::string name;
+    std::vector<FileSystemComponent*> children;
+
+public:
+    CompositeDirectory(const std::string& name) : name(name) {}
+
+    void add(FileSystemComponent* component) {
+        children.push_back(component);
+    }
+
+    void display() const override {
+        std::cout << "Directory: " << name << std::endl;
+        for (const auto& child : children) {
+            child->display();
+        }
+    }
+};
